@@ -2,6 +2,18 @@ const express = require('express')
 const app = express()
 var bodyParser = require('body-parser')
 var cors = require('cors')
+const knex = require('knex')
+
+
+const db = knex({
+  client: 'pg',
+  connection: {
+    host : '127.0.0.1',
+    user : 'shaniz',
+    password : '',
+    database : 'smart-brain'
+  }
+});
 
 const database = {
 	users: [
@@ -40,14 +52,12 @@ app.post('/signin', (req, res) => {
 })
 
 app.post('/register', (req, res) => {
-	database.users.push({
-		id: '125',
-		name: req.body.name,
-		email: req.body.email,
-		password: req.body.password,
-		entries: 0,
+	const { email, name, password } = req.body;
+	db('users').insert({
+		email: email,
+		name: name,
 		joined: new Date()
-	})
+	}).then(console.log)
 	res.json(database.users[database.users.length-1]);
 
 })
