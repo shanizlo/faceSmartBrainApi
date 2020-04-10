@@ -1,5 +1,6 @@
 This awesome project made as part of Zero-To-Mastery Academy course.
 The app allows you to register and sign in, then you can add url link to the image and voi-la - it recognizes face there!
+P.S. Don't forget to pet the dog image in left upper corner after signing in.
 
 This is the backend part of the project.
 
