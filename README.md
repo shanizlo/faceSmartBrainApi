@@ -16,6 +16,11 @@ Backend made with:
 * postgresql for database
 * knex for db queries
 
+Running frontend:
+Clone frontend repository
+Run npm install
+Run npm start
+
 In order to have the backend of this project running, you need to have PostgreSQL installed.
 Steps involved are as follows:
 1. Clone this repository
