@@ -13,7 +13,7 @@ const db = knex({
   client: 'pg',
   connection: {
     connectionString : process.env.DATABASE_URL,
-    ssl: true
+    ssl: true,
   }
 });
 
@@ -27,6 +27,7 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
 app.get('/profile/:id', (req, res) => { profile.handleProfile(req, res, db) });
 app.put('/image', (req, res) => { image.handleImage(req, res, db) });
 
-app.listen(process.env.PORT ||  3000, () => {
-	console.log(`server is listening on port ${process.env.PORT}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+	console.log(`server is listening on port ${PORT}`);
 });
