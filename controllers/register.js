@@ -2,6 +2,10 @@ const handleRegister = (req, res, db, bcrypt) => {
 	const { email, name, password } = req.body;
 	if (!email || !name || !password) {
 		return res.status(400).json('incorrect form submission');
+	} else if (
+		db.select('email').from('login').where('email', '=', email)
+	) {
+		return res.status(400).json('this email is already used');
 	}
 	const hash = bcrypt.hashSync(password);
 	db.transaction(trx => {
@@ -26,7 +30,7 @@ const handleRegister = (req, res, db, bcrypt) => {
 		.then(trx.commit)
 		.catch(trx.rollback)
 	})
-	.catch(err => res.status(400).json('unable to register!'));
+	.catch(err => res.status(400).json('unable to register!!'));
 }
 
 module.exports = {
